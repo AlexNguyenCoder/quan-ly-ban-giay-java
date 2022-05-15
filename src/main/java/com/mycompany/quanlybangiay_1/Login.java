@@ -40,7 +40,7 @@ public class Login extends javax.swing.JFrame {
         AnhNen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/280120985_557608199114322_5584285482307412981_n.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Tài khoản");
+        jLabel1.setText("Tài khoảnasdasdasd");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Mật khẩu");
