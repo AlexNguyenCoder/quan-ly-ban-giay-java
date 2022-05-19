@@ -18,7 +18,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerDriver;
  * @author minhq
  */
 public class Database {
-	private static String dbPrefix = "jdbc:sqlserver://localhost";
+	private static String dbPrefix = "jdbc:sqlserver://25.15.178.2";
 	private static String user = "sa";
 	private static String pass = "654321";
 	private static String dbPort = "1433";

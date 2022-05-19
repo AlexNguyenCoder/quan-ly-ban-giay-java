@@ -4,8 +4,6 @@
  */
 package com.mycompany.quanlybangiay_1;
 
-import javax.swing.JFrame;
-
 /**
  *
  * @author minhq
