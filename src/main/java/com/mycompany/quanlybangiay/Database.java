@@ -1,4 +1,4 @@
-package com.mycompany.quanlybangiay_1;
+package com.mycompany.quanlybangiay;
 
 import java.sql.Statement;
 import java.sql.Connection;
