@@ -23,10 +23,10 @@ public class Database {
 	private static String pass = "654321";
 	private static String dbPort = "1433";
 	private static String databaseName = "QuanLyBanGiay";
+	private Connection conn = null;
 	private Statement stmt = null;
 
 	public Database() {
-		Connection conn = null;
 		String dbURL = dbPrefix + ":" + dbPort + ";" + "databaseName=" + databaseName
 				+ ";encrypt=true;trustServerCertificate=true";
 		try {
@@ -117,19 +117,29 @@ public class Database {
 				ResultSet b = Query("SELECT SCOPE_IDENTITY() AS id");
 				b.next();
 				int id = b.getInt("id");
+				a = getCart();
 				while (a.next()) {
-					Update("INSERT INTO ChiTietHoaDon VALUES (" + id + ", " + a.getInt("MaSanPham") + ", "
-							+ a.getInt("SoLuong") + ", " + a.getInt("DonGia") + ")");
-					return true;
+					conn.createStatement().executeUpdate(
+							"INSERT INTO ChiTietHoaDon VALUES (" + id + ", " + a.getInt("MaSanPham") + ", "
+									+ a.getInt("SoLuong") + ", " + a.getInt("DonGia") + ")");
 				}
+				Update("DELETE FROM GioHang");
+				return true;
 			}
 		} catch (SQLException e) {
+			System.out.println("error insert invoice: " + e.getMessage());
 		}
 		return false;
 	}
 
 	public ResultSet getInvoices() {
 		return Query("SELECT * FROM HoaDon");
+	}
+
+	public ResultSet getInvoiceDetail(int mhd) {
+		return Query(
+				"SELECT CTHD.*, TenSanPham FROM HoaDon HD LEFT JOIN ChiTietHoaDon CTHD ON HD.MaHD = CTHD.MaHD LEFT JOIN SanPham SP ON CTHD.MaSanPham = SP.MaSanPham WHERE HD.MaHD = "
+						+ mhd);
 	}
 
 }

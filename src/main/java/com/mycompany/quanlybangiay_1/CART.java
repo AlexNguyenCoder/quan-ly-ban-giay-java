@@ -204,10 +204,9 @@ public class CART extends javax.swing.JFrame {
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnDeleteMouseClicked
-		int optionType = JOptionPane.OK_CANCEL_OPTION;
 		int result = JOptionPane.showConfirmDialog(null,
-				"Bạn có muốn xoá khỏi giỏ hàng không?", "Thông báo!", optionType);
-		if (result == optionType) {
+				"Bạn có muốn xoá khỏi giỏ hàng không?", "Thông báo!", JOptionPane.YES_NO_OPTION);
+		if (result == JOptionPane.YES_OPTION && tblCart.getSelectedRow() > -1) {
 			int a = db.deleteCart((int) tblCart.getValueAt(tblCart.getSelectedRow(), 0));
 			reloadCart();
 			System.out.println(a);
@@ -222,17 +221,22 @@ public class CART extends javax.swing.JFrame {
 		shop.setResizable(false);
 		shop.setLocationRelativeTo(null);
 		shop.setVisible(true);
+		shop.setDefaultCloseOperation(HomePage.DISPOSE_ON_CLOSE);
 		this.setVisible(false);
-
 	}// GEN-LAST:event_btnBackToShopMouseClicked
 
 	private void btnCheckOutMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnCheckOutMouseClicked
-		if (db.addInvoice()) {
-			INVOICE invoice = new INVOICE();
-			invoice.setResizable(false);
-			invoice.setLocationRelativeTo(null);
-			invoice.setVisible(true);
-		}
+		int result = JOptionPane.showConfirmDialog(null,
+				"Bạn có muốn thanh toán không?", "Thông báo!", JOptionPane.YES_NO_OPTION);
+		if (result == JOptionPane.YES_OPTION)
+			if (db.addInvoice()) {
+				INVOICE invoice = new INVOICE();
+				invoice.setResizable(false);
+				invoice.setLocationRelativeTo(null);
+				invoice.setVisible(true);
+				invoice.setDefaultCloseOperation(HomePage.DISPOSE_ON_CLOSE);
+				this.setVisible(false);
+			}
 	}// GEN-LAST:event_btnCheckOutMouseClicked
 
 	/**

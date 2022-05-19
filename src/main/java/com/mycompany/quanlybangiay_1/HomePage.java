@@ -187,7 +187,6 @@ public class HomePage extends javax.swing.JFrame {
         shop.setResizable(false);
         shop.setLocationRelativeTo(null);
         shop.setVisible(true);
-        shop.pack();
         shop.setDefaultCloseOperation(HomePage.DISPOSE_ON_CLOSE);
     }// GEN-LAST:event_btnShopMouseClicked
 
